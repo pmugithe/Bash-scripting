@@ -9,5 +9,3 @@
 a=10
 echo a
 echo ${a} 
-
-echo type a: ${a} 
