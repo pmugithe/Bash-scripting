@@ -6,5 +6,6 @@
 
 #How can i print the value of a variable? We use $variable
 
+a=10
 echo a
 echo $a 
