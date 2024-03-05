@@ -9,3 +9,13 @@
 a=10
 echo a
 echo ${a} 
+
+# print x variable and see if scripts takes the value or not
+
+echo "Printing x value: "${x}
+
+#assign some value to x on terminal and see:
+
+echo "Printing x value: "${x}
+
+#using export to assign value to the varibles inside script like this: export x=111
