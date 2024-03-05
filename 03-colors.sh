@@ -13,4 +13,8 @@ echo "Color coding is important to find out what's the message means"
 
 echo -e "\e[31m This is red text \e[0m"
 
+#Foreground(Text) + Background color coding
+
+
+
 
