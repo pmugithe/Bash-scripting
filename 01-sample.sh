@@ -8,3 +8,4 @@ echo Welcome to Bash Scripting
 #This is how we execute the bash file
 #$ bash scriptName.sh or sh schriptName.sh or  ./scriptName.sh
 
+#git add .; git commit -m "Push"; git push
