@@ -25,3 +25,12 @@ echo calling a function here
 sampleFunction
 echo called and exited function in above step
 
+
+# example function
+
+stat(){
+    echo "The number of open sessions are:" $(who | wc -l)
+    echo " Todays date is: " $(date + %f)
+}
+
+stat
