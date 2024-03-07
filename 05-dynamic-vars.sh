@@ -2,7 +2,7 @@
 
 # Declaring an expression using Parenthesis
 DATE="$(date +%F)"
-SEESION_COUNT=$(who / wc -l)
+SEESION_COUNT=$(who | wc -l)
 
 echo "Today's date is: $DATE "
 
