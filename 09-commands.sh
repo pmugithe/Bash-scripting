@@ -27,10 +27,21 @@ echo called and exited function in above step
 
 
 # example function
-
+sleep 1
 stat(){
     echo "The number of open sessions are:" $(who | wc -l)
     echo "Todays date is:"  $(date +%F)
 }
 
 stat
+
+sleep 2
+
+stat
+
+sleep 3
+ stat
+
+ sleep 4
+
+ stat
