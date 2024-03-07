@@ -30,7 +30,7 @@ echo called and exited function in above step
 
 stat(){
     echo "The number of open sessions are:" $(who | wc -l)
-    echo " Todays date is: " $(date + %f)
+    echo " Todays date is: " $(date +%f)
 }
 
 stat
