@@ -8,3 +8,4 @@ echo "Today's date is: $DATE "
 
 echo "Total number of open sessions: $SESSION_COUNT"
 
+
