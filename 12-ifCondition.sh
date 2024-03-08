@@ -19,7 +19,7 @@ echo "Demo on usage of IF Statements"
 
 read -p " Enter number : " number  
   
-if [ $number -gt 125 ]  
+if [ $number -le 125 ]  
 then  
 echo "Value is greater than 125"  
 fi  
