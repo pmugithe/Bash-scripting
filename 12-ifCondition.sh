@@ -40,7 +40,7 @@ fi
 #   <else block commands>  
 # fi  
 
-read -p "Enter your input" INPUT
+read -p "Enter your input: \t" INPUT
 if [ $INPUT -gt 3 ];  
 then  
   echo "Given Input is greater than 3."  
