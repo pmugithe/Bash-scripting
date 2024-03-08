@@ -40,6 +40,6 @@ case $Answer in
         echo  
         ;;  
     No|no|N|n)  
-        echo "It's easy. Let's start learning from javatpoint."  
+        echo "It's easy. Let's start learning."  
         ;;  
 esac  
