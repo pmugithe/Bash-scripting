@@ -6,7 +6,7 @@ echo "This is a Frontend script file"
 USER_ID=$(id -u)
 
 if [ $USER_ID -ne 0 ]; then
-    echo -e "\e[31m Please login with valid user or sudo user\e[0m \n \t Example: suod bash wrapper.sh frontendh.sh"
+    echo -e "\e[31m Please login with valid user or sudo user\e[0m \n \t Example: sudo bash wrapper.sh frontendh.sh"
     exit 1
 fi
 echo "Frontend Configuring"
