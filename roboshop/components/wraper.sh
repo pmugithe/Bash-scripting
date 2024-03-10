@@ -2,4 +2,4 @@
 
 echo "This is a Wraper Script File"
 
-bash components/frontend.sh
+bash frontend.sh
