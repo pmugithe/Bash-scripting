@@ -2,4 +2,5 @@
 
 echo "This is a Wraper Script File"
 
-bash frontend.sh
+bash $1
+
