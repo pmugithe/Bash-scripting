@@ -10,7 +10,7 @@ if [ $USER_ID -ne 0 ]; then
     exit 1
 fi
 echo "Frontend Configuring"
-yum install nginx -y
+yum install nginx -y &>> /tmp/frontend.log
 
 
 # Script should if the user is not a root user rather executing the commands and failing
