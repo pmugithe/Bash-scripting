@@ -28,16 +28,21 @@ stat() {
 
 echo -n "Configuring ${COMPONENT}... "
 
-yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing nodejs..."
 yum install nodejs -y  &>> ${LOGFILE}
 stat $?
 
-echo -n "Creating an Application user..."
-useradd roboshop
-stat $?
+id ${APPUSER}
+if [ $1 -eq 0 ]; then 
+    echo -n "Creating an Application user..."
+    useradd roboshop
+    stat $?
+fi
+
+
 
 # echo -n "Installing ${COMPONENT}..."
 # yum install -y mongodb-org &>> ${LOGFILE}
