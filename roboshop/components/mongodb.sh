@@ -23,7 +23,7 @@ stat() {
 
 }
 
-echo -n "Configuring ${COMPONENT}... "
+echo  "Configuring ${COMPONENT}... "
 
 echo -n "Setting up ${COMPONENT} repos..."
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
@@ -32,9 +32,17 @@ stat $?
 
 echo -n "Installing ${COMPONENT}..."
 yum install -y mongodb-org &>> ${LOGFILE}
-systemctl enable mongod
+stat $?
+
+echo "Enabling the ${COMPONENT} visibility..."
+sed -ie 's/127.0.0.1/0.0.0.0/g' /ect/mongodb.conf
+stat $?
+
+echo -n "Starting the ${COMPONENT} component..."
+systemctl enable mongod &>> ${LOGFILE}
 systemctl start mongod &>> ${LOGFILE}
 stat $?
+
 
 
 # echo -n "Downloading the ${COMPONENT} component..."
