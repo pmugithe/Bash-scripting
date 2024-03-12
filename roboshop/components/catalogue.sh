@@ -59,7 +59,7 @@ mv catalogue-main catalogue
 chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
 stat $?
 
-echo -n "Generating Aritifacts..."
+echo -n "Generating ${COMPONENT} Artifacts..."
 cd /home/${APPUSER}/${COMPONENT}/
 npm install &>> ${LOGFILE}
 stat $?
