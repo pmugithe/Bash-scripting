@@ -39,8 +39,8 @@ sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 stat $?
 
 echo -n "Starting the ${COMPONENT} component..."
-systemctl enable mongod &>> ${LOGFILE}
-systemctl start mongod &>> ${LOGFILE}
+systemctl enable mongod  &>> ${LOGFILE}
+systemctl start mongod  &>> ${LOGFILE}
 stat $?
 
 
