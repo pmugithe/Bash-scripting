@@ -65,34 +65,8 @@ npm install &>> ${LOGFILE}
 stat $?
 
 
-# cd /home/roboshop/catalogue
-# npm install
-
-# echo -n "Installing ${COMPONENT}..."
-# yum install -y mongodb-org &>> ${LOGFILE}
-# stat $?
-
-# echo -n "Enabling the ${COMPONENT} visibility..."
-# sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-# stat $?
-
-# echo -n "Starting the ${COMPONENT} component..."
-# systemctl enable mongod  &>> ${LOGFILE}
-# systemctl start mongod  &>> ${LOGFILE}
-# stat $?
-
-# echo -n "Restarting the ${COMPONENT}..."
-# systemctl restart mongod &>> ${LOGFILE}
-# stat $?
-
-# echo -n "Downloading the ${COMPONENT} components..."
-# curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
-# stat $?
-# echo -n "Organizing the ${COMPONENT} schema..."
-# cd /tmp
-# unzip mongodb.zip
-# cd mongodb-main
-# mongo < catalogue.js &>> ${LOGFILE}
-# mongo < users.js    &>> ${LOGFILE}
-# stat $?
+echo -n "Updating the systemd file"
+sed -ie 's/MONGO_DNSNAME/ip-172-31-18-176.ec2.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
+mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
 
