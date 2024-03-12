@@ -4,7 +4,7 @@ echo "This is a Frontend script file"
 
 #Validate root user if not dont execute it
 USER_ID=$(id -u)
-COMPONENT= 'frontend'
+COMPONENT=frontend
 LOGFILE="/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ]; then
