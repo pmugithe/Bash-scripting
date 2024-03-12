@@ -9,7 +9,7 @@ if [ $USER_ID -ne 0 ]; then
     echo -e "\e[31m Please login with valid user or sudo user\e[0m \n \t Example: sudo bash wrapper.sh frontendh.sh"
     exit 1
 fi
-echo "Frontend Configuring"
+echo "Configuring Frontend: "
 yum install nginx -y &>> /tmp/frontend.log
 
 
