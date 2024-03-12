@@ -42,7 +42,21 @@ if [ $? -ne 0 ]; then
     stat $?
 fi
 
+echo -n "Downloading the ${COMPONENT}..."
+curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
+stat $?
 
+# we can't change terminal in a automation scripting, 
+
+echo -n "Changing the ${COMPONENT} to ${APPUSER} home directory..."
+cd /home/${APPUSER}/
+rm -rf ${COMPONENT} &>> ${LOGFILE}
+unzip -o /tmp/catalogue.zip &>> ${LOGFILE}
+stat $?
+
+# mv catalogue-main catalogue
+# cd /home/roboshop/catalogue
+# npm install
 
 # echo -n "Installing ${COMPONENT}..."
 # yum install -y mongodb-org &>> ${LOGFILE}
