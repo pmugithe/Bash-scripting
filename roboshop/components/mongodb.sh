@@ -54,8 +54,8 @@ echo -n "Organizing the ${COMPONENT} schema..."
 cd /tmp
 unzip mongodb.zip
 cd mongodb-main
-mongo < catalogue.js
-mongo < users.js
+mongo < catalogue.js &>> ${LOGFILE}
+mongo < users.js    &>> ${LOGFILE}
 stat $?
 
 
