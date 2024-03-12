@@ -28,6 +28,17 @@ else
     echo -e "\e[32m Failure \e[0m"
 fi
 
+echo -n "Downloading the frontend component..."
+
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+
+if [ $? -eq 0 ]; then 
+    echo -e "\e[32m Success \e[0m"
+else
+    echo -e "\e[32m Failure \e[0m"
+fi
+
+# cd /usr/share/nginx/html
 
 
 
