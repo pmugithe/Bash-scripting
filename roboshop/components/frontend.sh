@@ -4,8 +4,6 @@ echo "This is a Frontend script file"
 
 #Validate root user if not dont execute it
 USER_ID=$(id -u)
-COMPONENT=$1
-LOGFILE= "/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ]; then
     echo -e "\e[31m Please login with valid user or sudo user\e[0m \n \t Example: sudo bash wrapper.sh frontendh.sh"
@@ -23,37 +21,37 @@ stat() {
 
 }
 
-echo -n "Configuring ${COMPONENT}: "
-yum install nginx -y &>> ${LOGFILE}
+echo -n "Configuring Frontend: "
+yum install nginx -y &>> /tmp/frontend.log
 
 stat $?
 
 echo -n "Starting nginx..."
-systemctl enable nginx &>> ${LOGFILE}
-systemctl start nginx  &>> ${LOGFILE}
+systemctl enable nginx &>> /tmp/frontend.log
+systemctl start nginx  &>> /tmp/frontend.log
 stat $?
-echo -n "Downloading the ${COMPONENT} component..."
+echo -n "Downloading the frontend component..."
 
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 
 stat $?
 
-echo -n "Clearing the old ${COMPONENT}..."
+echo -n "Clearing the old frontend..."
 cd /usr/share/nginx/html 
-rm -rf * &>> ${LOGFILE}
+rm -rf * &>> /tmp/frontend.log
 stat $?
-echo -n "Extracting and sorting the $1 folder..."
-unzip /tmp/frontend.zip &>> ${LOGFILE}
+echo -n "Extracting and sorting the frontend folder..."
+unzip /tmp/frontend.zip &>> /tmp/frontend.log
 mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf 
 stat $?
 
-echo -n "Restarting ${COMPONENT} server..."
+echo -n "Restarting frontend server..."
 
 systemctl daemon-reload 
-systemctl restart nginx &>> ${LOGFILE}
+systemctl restart nginx &>> /tmp/frontend.log
 
 stat $?
 
