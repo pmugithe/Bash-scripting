@@ -4,7 +4,7 @@ echo "This is a Frontend script file"
 
 #Validate root user if not dont execute it
 USER_ID=$(id -u)
-COMPONENT= frontend
+COMPONENT= "frontend"
 LOGFILE="/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ]; then
@@ -24,36 +24,36 @@ stat() {
 }
 
 echo -n "Configuring ${COMPONENT}: "
-yum install nginx -y &>> /tmp/frontend.log
+yum install nginx -y &>> ${LOGFILE}
 
 stat $?
 
 echo -n "Starting nginx..."
-systemctl enable nginx &>> /tmp/frontend.log
-systemctl start nginx  &>> /tmp/frontend.log
+systemctl enable nginx &>> ${LOGFILE}
+systemctl start nginx  &>> ${LOGFILE}
 stat $?
-echo -n "Downloading the frontend component..."
+echo -n "Downloading the ${COMPONENT} component..."
 
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 
 stat $?
 
-echo -n "Clearing the old frontend..."
+echo -n "Clearing the old ${COMPONENT}..."
 cd /usr/share/nginx/html 
-rm -rf * &>> /tmp/frontend.log
+rm -rf * &>> ${LOGFILE}
 stat $?
-echo -n "Extracting and sorting the frontend folder..."
-unzip /tmp/frontend.zip &>> /tmp/frontend.log
+echo -n "Extracting and sorting the ${COMPONENT} folder..."
+unzip /tmp/frontend.zip &>> ${LOGFILE}
 mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf 
 stat $?
 
-echo -n "Restarting frontend server..."
+echo -n "Restarting ${COMPONENT} server..."
 
 systemctl daemon-reload 
-systemctl restart nginx &>> /tmp/frontend.log
+systemctl restart nginx &>> ${LOGFILE}
 
 stat $?
 
