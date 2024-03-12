@@ -59,6 +59,12 @@ mv catalogue-main catalogue
 chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
 stat $?
 
+echo -n "Generating Aritifacts..."
+cd /home/${APPUSER}/${COMPONENT}/
+npm install &>> ${LOGFILE}
+stat $?
+
+
 # cd /home/roboshop/catalogue
 # npm install
 
