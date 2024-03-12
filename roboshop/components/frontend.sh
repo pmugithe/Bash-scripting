@@ -4,6 +4,8 @@ echo "This is a Frontend script file"
 
 #Validate root user if not dont execute it
 USER_ID=$(id -u)
+COMPONENT= frontend
+LOGFILE="/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ]; then
     echo -e "\e[31m Please login with valid user or sudo user\e[0m \n \t Example: sudo bash wrapper.sh frontendh.sh"
@@ -21,7 +23,7 @@ stat() {
 
 }
 
-echo -n "Configuring Frontend: "
+echo -n "Configuring ${COMPONENT}: "
 yum install nginx -y &>> /tmp/frontend.log
 
 stat $?
