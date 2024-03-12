@@ -54,7 +54,11 @@ rm -rf ${COMPONENT} &>> ${LOGFILE}
 unzip -o /tmp/catalogue.zip &>> ${LOGFILE}
 stat $?
 
-# mv catalogue-main catalogue
+echo -n "Changing the ownership to ${APPUSER}..."
+mv catalogue-main catalogue 
+chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
+stat $?
+
 # cd /home/roboshop/catalogue
 # npm install
 
