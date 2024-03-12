@@ -43,6 +43,22 @@ systemctl enable mongod  &>> ${LOGFILE}
 systemctl start mongod  &>> ${LOGFILE}
 stat $?
 
+echo -n "Restarting the ${COMPONENT}..."
+systemctl restart mongod &>> ${LOGFILE}
+stat $?
+
+echo -n "Downloading the ${COMPONENT} components..."
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+stat $?
+echo -n "Organizing the ${COMPONENT} schema..."
+cd /tmp
+unzip mongodb.zip
+cd mongodb-main
+mongo < catalogue.js
+mongo < users.js
+stat $?
+
+
 
 
 # echo -n "Downloading the ${COMPONENT} component..."
