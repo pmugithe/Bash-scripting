@@ -70,3 +70,9 @@ sed -ie 's/MONGO_DNSNAME/ip-172-31-18-176.ec2.internal/' /home/${APPUSER}/${COMP
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
+echo -n "Starting the service..."
+systemctl daemon-reload  &>> ${LOGFILE}
+systemctl start catalogue  &>> ${LOGFILE}
+systemctl enable catalogue   &>> ${LOGFILE}
+systemctl status catalogue -l  &>> ${LOGFILE}
+
