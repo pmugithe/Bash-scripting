@@ -12,6 +12,13 @@ fi
 echo "Configuring Frontend: "
 yum install nginx -y &>> /tmp/frontend.log
 
+if [ $? -eq 0 ]; then 
+    echo -e "\e[32m Success \e[0m"
+else
+    echo -e "\e[32m Failure \e[0m"
+fi
+
+
 
 # Script should if the user is not a root user rather executing the commands and failing
 # How can we handle this? Validation!!!!
