@@ -40,7 +40,7 @@ stat $?
 
 echo -n "Starting the ${COMPONENT} component..."
 systemctl enable mongod  &>> ${LOGFILE}
-systemctl start mongod  &>> ${LOGFILE}
+systemctl restart mongod  &>> ${LOGFILE}
 stat $?
 
 echo -n "Restarting the ${COMPONENT}..."
