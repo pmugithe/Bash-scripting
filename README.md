@@ -27,3 +27,6 @@ Date: 3/5/2024
 11. Command
 ``` 
 
+# In Bash scripting, even if the instruction x fails, it goes with next commands in sequence.
+
+### If you want to override this, you can use "set -e" in the beginning of the script.
