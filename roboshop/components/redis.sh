@@ -34,44 +34,12 @@ echo -n "Installing nodejs..."
 yum install redis-6.2.13 -y &>> ${LOGFILE}
 stat $?
 
-id ${APPUSER}
-if [ $? -ne 0 ]; then 
-    echo -n "Creating an Application user..."
-    useradd roboshop
-    stat $?
-fi
-
-echo -n "Downloading the ${COMPONENT}..."
-curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
+echo -n "Enabling the ${COMPONENT} visibility..."
+sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf
 stat $?
 
-# we can't change terminal in a automation scripting, 
-
-echo -n "Changing the ${COMPONENT} to ${APPUSER} home directory..."
-cd /home/${APPUSER}/
-rm -rf ${COMPONENT} &>> ${LOGFILE}
-unzip -o /tmp/catalogue.zip &>> ${LOGFILE}
+echo -n "Starting the ${COMPONENT} component..."
+systemctl daemon-reload &>> ${LOGFILE}
+systemctl enable redis  &>> ${LOGFILE}
+systemctl start redis  &>> ${LOGFILE}
 stat $?
-
-echo -n "Changing the ownership to ${APPUSER}..."
-mv catalogue-main catalogue 
-chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
-stat $?
-
-echo -n "Generating ${COMPONENT} Artifacts..."
-cd /home/${APPUSER}/${COMPONENT}/
-npm install &>> ${LOGFILE}
-stat $?
-
-
-echo -n "Updating the systemd file"
-sed -ie 's/MONGO_DNSNAME/ip-172-31-18-176.ec2.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service
-mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-stat $?
-
-echo -n "Starting the service..."
-systemctl daemon-reload  &>> ${LOGFILE}
-systemctl start catalogue  &>> ${LOGFILE}
-systemctl enable catalogue   &>> ${LOGFILE}
-systemctl status catalogue -l  &>> ${LOGFILE}
-
