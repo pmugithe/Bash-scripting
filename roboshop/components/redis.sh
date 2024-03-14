@@ -31,7 +31,7 @@ curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.r
 stat $?
 
 echo -n "Installing nodejs..."
-yum install nodejs -y  &>> ${LOGFILE}
+yum install redis-6.2.13 -y &>> ${LOGFILE}
 stat $?
 
 id ${APPUSER}
