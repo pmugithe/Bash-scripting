@@ -42,5 +42,5 @@ stat $?
 echo -n "Starting the ${COMPONENT} component..."
 systemctl daemon-reload &>> ${LOGFILE}
 systemctl enable redis  &>> ${LOGFILE}
-systemctl start redis  &>> ${LOGFILE}
+systemctl restart redis  &>> ${LOGFILE}
 stat $?
