@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMPONENT = catalogue
+COMPONENT =catalogue
 
 # This is how we import the functions that are declared in a different file using source 
 source ./common.sh
