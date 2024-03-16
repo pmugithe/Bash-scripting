@@ -30,3 +30,14 @@ Date: 3/5/2024
 # In Bash scripting, even if the instruction x fails, it goes with next commands in sequence.
 
 ### If you want to override this, you can use "set -e" in the beginning of the script.
+
+## How to keep our code DRY?
+    1. We can define functions and call them whenever needed
+    2. we define function in common.sh and call all the function from common file
+        2a. for Nodejc Components, create a function and declare all action in it and call it whenever you need     nodejs  
+        2b. for Python Components, create a function and declare all action in it and call it whenever you need     python
+        2c. for Java Components, create a function and declare all action in it and call it whenever you need     java 
+        2d. for Angular Components, create a function and declare all action in it and call it whenever you need    angular
+    
+
+
