@@ -57,8 +57,7 @@ cd mongodb-main
 mongo < catalogue.js &>> ${LOGFILE}
 mongo < users.js    &>> ${LOGFILE}
 stat $?
-
-
+echo  "Installation for ${COMPONENT} is completed. "
 
 
 # echo -n "Downloading the ${COMPONENT} component..."
