@@ -64,7 +64,7 @@ npm install &>> ${LOGFILE}
 stat $?
 
 
-echo -n "Updating the systemd file"
+echo -n "Updating the ${COMPONENT} systemd file"
 sed -ie 's/REDIS_ENDPOINT/172.31.82.178/' /home/${APPUSER}/${COMPONENT}/systemd.service
 sed -ie 's/MONGO_ENDPOINT/172.31.18.176/' /home/${APPUSER}/${COMPONENT}/systemd.service
 
