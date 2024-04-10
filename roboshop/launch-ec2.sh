@@ -8,6 +8,7 @@
 # 5. DNS Record : Hosted Zone ID
 
 # Creating EC2-Instances
+COMPONENT=$1
 if [ -z $1 ]  ; then 
     echo -e "\e[31m COMPONENT NAME IS NEEDED \e[0m \n \t \t"
     echo -e "\e[35m Example Usage: \e[0m \n\t\t $ bash launch-ec2.sh shipping"
