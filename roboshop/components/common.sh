@@ -92,3 +92,56 @@ NODEJS(){
 
 }
 
+
+MVN_PACKAGE() {
+        echo -n "Generating the ${COMPONENT} artifacts :"
+        cd /home/${APPUSER}/${COMPONENT}/
+        mvn clean package   &>> ${LOGFILE}
+        mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
+        stat $?
+}
+
+JAVA() {
+        echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
+
+        echo -n "Installing maven:"
+        yum install maven -y    &>> ${LOGFILE}
+        stat $? 
+
+        CREATE_USER              # calls CREATE_USER function that creates user account.
+
+        DOWNLOAD_AND_EXTRACT     # Downloads and extracts the components
+
+        MVN_PACKAGE
+
+        CONFIG_SVC
+
+}
+
+
+PYTHON() {
+        echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
+
+        echo -n "Installing python:"
+        yum install python36 gcc python3-devel -y &>> ${LOGFILE}
+        stat $? 
+
+        CREATE_USER              # calls CREATE_USER function that creates user account.
+
+        DOWNLOAD_AND_EXTRACT     # Downloads and extracts the components
+
+        echo -n "Generating the artifacts"
+        cd /home/${APPUSER}/${COMPONENT}/ 
+        pip3 install -r requirements.txt    &>> ${LOGFILE} 
+        stat $?
+
+        USERID=$(id -u roboshop)
+        GROUPID=$(id -g roboshop)
+
+        echo -n "Updating the uid and gid in the ${COMPONENT}.ini file"
+        sed -i -e "/^uid/ c uid=${USERID}" -e "/^gid/ c gid=${GROUPID}" /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
+        stat $?
+
+        CONFIG_SVC
+}
+
