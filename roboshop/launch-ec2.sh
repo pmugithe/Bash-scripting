@@ -25,6 +25,6 @@ SG_ID=sg-09d812ab7c313a2ed
 #     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]"
 
 echo -e "****** Creating \e[35m ${COMPONENT} \e[0m Server Is In Progress ************** "
-PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE}\ 
---security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress'| sed -e 's/"//g') 
+PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress') 
 
+ echo -e "Private IP Address of the $COMPONENT-${ENV} is $PRIVATEIP \n\n"
