@@ -19,6 +19,6 @@ INSTANCE_TYPE="t2.micro"
 # SG_ID="sg-00a045fbba0993e06"
 
 
-aws ec2 run-instances --image-id ${AMI_ID} --count 1 --instance-type ${INSTANCE_TYPE} --security-group sg-00a045fbba0993e06 "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]"
+aws ec2 run-instances --image-id ${AMI_ID} --count 1 --instance-type ${INSTANCE_TYPE} --security-groups sg-00a045fbba0993e06 "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]"
 
 
