@@ -7,6 +7,7 @@
 # 4. Instances you need
 # 5. DNS Record : Hosted Zone ID
 
+# Creating EC2-Instances
 AMI_ID="ami-0f75a13ad2e340a58"
 INSTANCE_TYPE="t2.micro"
 SG_ID="sg-00a045fbba0993e06"
