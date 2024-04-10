@@ -15,7 +15,9 @@ if [ -z $1 ]  ; then
     exit 1
 fi 
 
-AMI_ID="ami-0f75a13ad2e340a58"
+# AMI_ID="ami-0f75a13ad2e340a58"
+AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7"| jq ".Images[].ImageId" | sed -e 's/"//g')" 
+
 INSTANCE_TYPE="t2.micro"
 SG_ID=sg-09d812ab7c313a2ed
 
