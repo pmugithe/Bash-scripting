@@ -8,10 +8,16 @@
 # 5. DNS Record : Hosted Zone ID
 
 # Creating EC2-Instances
+if [ -z $1 ] || [ -z $2 ]  ; then 
+    echo -e "\e[31m COMPONENT NAME IS NEEDED \e[0m \n \t \t"
+    echo -e "\e[35m Example Usage: \e[0m \n\t\t $ bash launch-ec2.sh shipping"
+    exit 1
+fi 
+
 AMI_ID="ami-0f75a13ad2e340a58"
 INSTANCE_TYPE="t2.micro"
 SG_ID="sg-00a045fbba0993e06"
-COMPONENT=$1
+
 
 aws ec2 run-instances --image-id $(AMI_ID) --count 1 --instance-type $(INSTANCE_TYPE) --security-group-ids $(SG_ID) --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value={COMPONENT}}]'
 
