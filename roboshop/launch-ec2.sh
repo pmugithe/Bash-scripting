@@ -21,6 +21,9 @@ AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-Ce
 INSTANCE_TYPE="t2.micro"
 # SG_ID=sg-09d812ab7c313a2ed
 
+# Z03125051537CUHAJFTCW
+HOSTEDZONEID="Z03125051537CUHAJFTCW"
+
 SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=cloud-devops-sgs | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g')"
 
 
@@ -32,11 +35,11 @@ SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=clou
 echo -e "****** Creating \e[35m ${COMPONENT} \e[0m Server Is In Progress ************** "
 PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g') 
 
-echo -e "Private IP Address of the $COMPONENT-${ENV} is $PRIVATEIP \n\n"
+echo -e "Private IP Address of the $COMPONENT is $PRIVATEIP \n\n"
 
 echo -e "Creating DNS Record of ${COMPONENT}: "
 
-sed -e "s/COMPONENT/${COMPONENT}-${ENV}/"  -e "s/IPADDRESS/${PRIVATEIP}/" route53.json  > /tmp/r53.json 
+sed -e "s/COMPONENT/${COMPONENT}/"  -e "s/IPADDRESS/${PRIVATEIP}/" route53.json  > /tmp/r53.json 
 
 aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/r53.json
 echo -e "\e[36m **** Creating DNS Record for the $COMPONENT has completed **** \e[0m \n\n"
