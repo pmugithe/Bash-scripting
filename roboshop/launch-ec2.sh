@@ -15,7 +15,7 @@ INSTANCE_TYPE="t2.micro"
 
 # Z03125051537CUHAJFTCW
 HOSTEDZONEID="Z03125051537CUHAJFTCW"
-if [ -z $1 ]  ; then 
+if [ -z $1 ] || [ -z $2 ]   ; then 
     echo -e "\e[31m COMPONENT NAME IS NEEDED \e[0m \n \t \t"
     echo -e "\e[35m Example Usage: \e[0m \n\t\t $ bash launch-ec2.sh shipping"
     exit 1
